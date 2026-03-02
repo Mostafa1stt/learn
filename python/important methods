@@ -1,0 +1,6 @@
+isinstance(x,data_type) return true if x is data_type
+bool(x) return true or false depanding on x 
+^= xor
+x>>=y   x in binary and subtract 0 y times
+x<<=y same but adds 0
+~ not in bits

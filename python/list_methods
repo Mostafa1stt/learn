@@ -1,0 +1,27 @@
+[start:end]
+for example if start = -4 it will start from the 4th from the last and will go to the end
+
+thislist[0:0] =["x"] will insert in the index 0  time complexity will be O(n)
+
+.insert(x,"y") will insert y in x index
+.append()
+.extend() like append but with any array (tuples, sets, dictionaries etc.)
+.remove() with values the first value only  
+.pop() with indexes
+del
+.clear()
+
+for x in thislist:
+    print(x)
+
+    ||
+    ||
+
+for x in range(len(thislist)):
+    print(thislist(x))
+
+.sort(reverse = , key = function )
+.reverse()
+.copy() or using list(thislist) or using thislist[:]
+.count()
+
