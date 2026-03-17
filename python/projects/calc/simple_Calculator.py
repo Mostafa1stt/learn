@@ -1,6 +1,5 @@
-def calc(operation):
+def calc(operation,expression = []):
 
-    expression = []
     numbers = []
     no_two_opreaters = True
     point_checker = True
@@ -32,6 +31,20 @@ def calc(operation):
             numbers.append(operation[i])
             no_two_opreaters = True
             point_checker = False
+
+        elif opreation[i] == "(":
+            expression.append(operation[i])
+            depth = 1
+            j = i + 1
+            while j < size and depth > 0:
+                if operation[j] == "(":
+                    depth += 1
+                elif operation[j] == ")":
+                    depth -= 1
+                j += 1
+
+            if depth != 0: 
+                return False
 
         elif operation[i] == "-":
             try: 
