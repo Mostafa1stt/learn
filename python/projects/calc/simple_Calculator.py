@@ -8,9 +8,9 @@ def calc(operation,expression = []):
 
     size = len(operation)
     if size == 0:
-        return False
+        return False , expression
     if operation[0] in "*/" or operation[-1] in "*/":
-        return False
+        return False , expression
 
     i = 0
     while i < (size):
@@ -35,7 +35,7 @@ def calc(operation,expression = []):
         elif operation[i] == "(":
             try:
                 if(numbers[-1]!="-"):
-                    return False
+                    return False , expression
             except:
                 pass
             expression.append(operation[i])
@@ -51,10 +51,10 @@ def calc(operation,expression = []):
 
             finder = j - 1
             if depth != 0: 
-                return False
+                return False , expression
 
             if not calc(operation[i+1:finder],expression):
-                return False
+                return False , expression
 
             i = finder
             expression.append(operation[i])
@@ -80,7 +80,7 @@ def calc(operation,expression = []):
             pass
         else:
             print(operation[i])
-            return False
+            return False , expression
 
         i+=1
 
@@ -126,36 +126,28 @@ def solver(out):
         if c not in "/*-+":
             stack.append(c)
         else:
-            if len(stack)>1: 
-                y = float(stack.pop())
-                x = float(stack.pop())
-                match c:
-                    case "+":
-                        z = x+y
-                    case "*":
-                        z = x*y
-                    case "-":
-                        z = x-y
-                    case "/":
-                        try :
-                            z = x/y
-                        except:
-                            return "math error"
-                stack.append(z)
-            else:
-                x = float(stack.pop())
-                match c:
-                    case "+":
-                        z = +x
-                    case "-":
-                        z = -x
-                stack.append(z)
+            y = float(stack.pop())
+            x = float(stack.pop())
+            match c:
+                case "+":
+                    z = x+y
+                case "*":
+                    z = x*y
+                case "-":
+                    z = x-y
+                case "/":
+                    try :
+                        z = x/y
+                    except:
+                        return "math error"
+            stack.append(z)
     return stack
     
 def main():
     problem = input("enter a problem in numbers:")
     
     valid , expression = calc(problem)
+
     if valid:
         print(expression)
         postfixer(expression)
