@@ -1,5 +1,4 @@
 def calc(operation,expression = []):
-
     numbers = []
     no_two_opreaters = True
     point_checker = True
@@ -12,6 +11,7 @@ def calc(operation,expression = []):
 
     i = 0
     while i < (size):
+
         if operation[i] in "/*+-" and no_two_opreaters:
             if numbers:
                 expression.append("".join(numbers))
@@ -22,20 +22,23 @@ def calc(operation,expression = []):
             expression.append(operation[i])
             no_two_opreaters = False
             point_checker = True
-
         elif operation[i].isdecimal():
             numbers.append(operation[i])
             no_two_opreaters = True
-
         elif operation[i] in "." and point_checker:
             numbers.append(operation[i])
             no_two_opreaters = True
             point_checker = False
-
-        elif opreation[i] == "(":
+        elif operation[i] == "(":
+            try:
+                if(numbers[-1]!="-"):
+                    return False
+            except:
+                pass
             expression.append(operation[i])
             depth = 1
             j = i + 1
+
             while j < size and depth > 0:
                 if operation[j] == "(":
                     depth += 1
@@ -43,9 +46,22 @@ def calc(operation,expression = []):
                     depth -= 1
                 j += 1
 
+            finder = j - 1
             if depth != 0: 
                 return False
 
+            if not calc(operation[i+1:finder],expression):
+                return False
+
+            i = finder
+            expression.append(operation[i])
+            try:
+                if(numbers[-1]=="-"):
+                    numbers.clear()
+                    expression.append("*")
+                    expression.append("-1")
+            except:
+                pass
         elif operation[i] == "-":
             try: 
                 float(expression[-1])
@@ -57,11 +73,10 @@ def calc(operation,expression = []):
                     numbers.clear()
                 else:
                     numbers.append("-")
-
         elif operation[i] in "+":
             pass
-
         else:
+            print(operation[i])
             return False
 
         i+=1
