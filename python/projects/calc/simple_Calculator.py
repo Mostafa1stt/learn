@@ -1,14 +1,12 @@
-numbers = []
-expression = []
 stack = []
 output = []
 
-def calc(operation):
-    next_neg = False
-    no_two_expression = True
-    no_two_floats = True
-    size = len(operation)
+def calc(operation,expression = []):
+    numbers = []
+    no_two_opreaters = True
+    point_checker = True
 
+    size = len(operation)
     if size == 0:
         return False
     if operation[0] in "*/" or operation[-1] in "*/":
@@ -17,68 +15,80 @@ def calc(operation):
     i = 0
     while i < (size):
 
-        if operation[i] in "/*+-" and no_two_expression:
-            if(numbers):
+        if operation[i] in "/*+-" and no_two_opreaters:
+            if numbers:
                 expression.append("".join(numbers))
+                numbers.clear()
+            else:
+                expression.append("0")
+
             expression.append(operation[i])
-            numbers.clear()
-            no_two_expression = False
-            no_two_floats = True
-
-        elif operation[i] == "-" and not(no_two_expression):
-            next_neg = True
-
-        elif operation[i] == "+" and not(no_two_expression):
-            pass
-
+            no_two_opreaters = False
+            point_checker = True
+        elif operation[i].isdecimal():
+            numbers.append(operation[i])
+            no_two_opreaters = True
+        elif operation[i] in "." and point_checker:
+            numbers.append(operation[i])
+            no_two_opreaters = True
+            point_checker = False
         elif operation[i] == "(":
+            try:
+                if(numbers[-1]!="-"):
+                    return False
+            except:
+                pass
             expression.append(operation[i])
-            no_two_expression = True
-            no_two_floats = True
             depth = 1
             j = i + 1
 
             while j < size and depth > 0:
-                
                 if operation[j] == "(":
                     depth += 1
-
                 elif operation[j] == ")":
                     depth -= 1
-                    
                 j += 1
 
+            finder = j - 1
             if depth != 0: 
                 return False
 
-            finder = j - 1 
-
-            if not calc(operation[i+1:finder]):
+            if not calc(operation[i+1:finder],expression):
                 return False
 
             i = finder
             expression.append(operation[i])
-        
-        elif operation[i].isdecimal():
-            if(next_neg):
-                numbers.append("-")
-            next_neg = False
-            numbers.append(operation[i])
-            no_two_expression = True
-
-        elif operation[i] == "." and no_two_floats:
-            no_two_floats = False
-            no_two_expression = True
-            numbers.append(operation[i])
+            try:
+                if(numbers[-1]=="-"):
+                    numbers.clear()
+                    expression.append("*")
+                    expression.append("-1")
+            except:
+                pass
+        elif operation[i] == "-":
+            try: 
+                float(expression[-1])
+                expression.append("".join(numbers))
+                expression.append(operation[i])
+                numbers.clear()
+            except:
+                if numbers:
+                    numbers.clear()
+                else:
+                    numbers.append("-")
+        elif operation[i] in "+":
+            pass
         else:
             print(operation[i])
             return False
+
         i+=1
 
     if(numbers):
         expression.append("".join(numbers))
         numbers.clear()
-    return True
+
+    return True , expression
 
 def postfixer(operation):
 
@@ -142,13 +152,16 @@ def solver(out):
                 stack.append(z)
     return stack
     
-problem = input("enter a problem in numbers:")
+def main():
+    problem = input("enter a problem in numbers:")
+    
+    valid , expression = calc(problem)
+    if valid:
+        print(expression)
+        postfixer(expression)
+        print(output)
+        print(solver(output))
+    else:
+        print("^ syntex error")
 
-if calc(problem):
-    print(expression)
-    postfixer(expression)
-    print(output)
-    print(solver(output))
-else:
-    print("^ syntex error")
-
+main()
