@@ -106,3 +106,102 @@ print(string.strip())
 # Excercies 12
 string = str(input("enter a string: "))
 print(" ".join(list(map(lambda x: x[::-1],string.split()))))
+
+# Excercies 13
+def sumer(numbers):
+    prefix = []
+    sumx = 0
+    for i in numbers:
+        sumx += i
+        prefix.append(sumx)
+    return prefix
+
+def main():
+    numbers = []
+    print("enter a char to stop entering numbers")
+    while True:
+        try:
+            number = float(input("enter the numbers: "))
+        except:
+            break
+        else:
+            numbers.append(number)
+            continue
+    print(numbers)
+    print(sumer(numbers))
+main()
+
+# Excercies 14,15
+import math
+
+def maxer(numbers):
+    maxs = -math.inf
+    oldmax = -math.inf
+    for i in numbers:
+        if i > maxs:
+            oldmax = maxs
+            maxs = i
+        elif oldmax < i:
+            oldmax = i
+    print(oldmax)
+
+maxer([23,1,2])
+
+# Excercies 16
+def main():
+    numbers = []
+    print("enter a char to stop entering numbers")
+    while True:
+        try:
+            number = float(input("enter the numbers: "))
+        except:
+            break
+        else:
+            numbers.append(number)
+            continue
+    print(set(numbers))
+main()
+
+# Excercies 17
+def main():
+    numbers = []
+    print("enter a char to stop entering numbers")
+    while True:
+        try:
+            number = float(input("enter the numbers: "))
+        except:
+            break
+        else:
+            numbers.append(number)
+            continue
+    print(numbers[::-1])
+main()
+
+# Excercies 18
+def main():
+    numbers = []
+    print("enter a char to stop entering numbers")
+    while True:
+        try:
+            number = float(input("enter the numbers: "))
+        except:
+            break
+        else:
+            numbers.append(number)
+            continue
+    n =2
+    print(numbers[-n:] + numbers[:-n])
+    print(numbers[n:] + numbers[:n])
+main()
+
+# Excercies 19
+def flater(things):
+    flaten = []
+    for i in things:
+        if isinstance(i,list):
+            for s in i:
+                flaten.append(s)
+        else:
+            flaten.append(i)
+    return flaten
+print(flater([1,2,3,[4,5],4,5]))
