@@ -70,7 +70,39 @@ for i in range(2):
     things.append(input("enter any two things"))
 things[0],things[1] = things[1],things[0]
 things
-# Ecercies 6
+
+# Excercies 6
 number = 4
 for i in range(1,13):
     print(f"{number} * {i} = {number * i}")
+
+# Excercies 7
+string = str(input("enter a string: "))
+print(string[::-1])
+
+# Excercies 8
+string = str(input("enter a string: "))
+counter = 0
+for i in string:
+    if i in "aeiou":
+        counter+=1
+print(counter)
+
+# Excercies 9
+string = str(input("enter a string: "))
+if (string) == (string[::-1]):
+    print("plandrom")
+else:
+    print("aosn")
+
+# Excercies 10
+string = str(input("enter a string: "))
+print(len(string.split()))
+
+# Excercies 11
+string = str(input("enter a string: "))
+print(string.strip())
+
+# Excercies 12
+string = str(input("enter a string: "))
+print(" ".join(list(map(lambda x: x[::-1],string.split()))))

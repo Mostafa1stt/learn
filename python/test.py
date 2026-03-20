@@ -1,4 +1,2 @@
-number = 4
-for i in range(1,13):
-    print(f"{number} * {i} = {number * i}")
-
+string = "asd  asdasd    asdasd asdasd a  asda"
+print((string.split(" ")).count(""))
