@@ -199,9 +199,85 @@ def flater(things):
     flaten = []
     for i in things:
         if isinstance(i,list):
-            for s in i:
-                flaten.append(s)
+            flaten.extend(i)
         else:
             flaten.append(i)
     return flaten
 print(flater([1,2,3,[4,5],4,5]))
+
+# Excercies 20
+def main():
+    repater = {}
+    numbers = []
+    print("enter a char to stop entering numbers")
+    while True:
+        try:
+            number = float(input("enter the numbers: "))
+        except:
+            break
+        else:
+            numbers.append(number)
+            continue
+    for i in numbers:
+        if i in repater:
+            repater[i]+=1
+        else:
+            repater[i] =1
+    print(repater)
+main()
+
+# Excercies 21
+def main():
+    repater = {}
+    string = str(input("enter a string: "))
+    for i in string:
+        if i in repater:
+            repater[i]+=1
+        else:
+            repater[i] =1
+    print(repater)
+main()
+
+# Excercies 22
+def main():
+    numbers = []
+    ndlist = [4,5,6]
+    print("enter a char to stop entering numbers")
+    while True:
+        try:
+            number = float(input("enter the numbers: "))
+        except:
+            break
+        else:
+            numbers.append(number)
+            continue
+    print(set(numbers) & set(ndlist))
+main()
+
+# Excercies 23
+def anagram(string1 , string2):
+    return(sorted(string1) == sorted(string2))
+
+def main():
+    string = str(input("enter a string: "))
+    other = str(input("enter a string: "))
+    print("anagram") if anagram(string , other) else print("not anagram")
+main()
+
+# Excercies 24
+def main():
+    list_string = ["eat","tea","tan","ate","nat","bat"]
+    seen = set()
+    output = []
+    for i , v in enumerate(list_string):
+        if v in seen:
+            continue
+        anagrams = [v]
+        seen.add(v)
+        for j in list_string[i+1:]:
+            if j not in seen and anagram(j,v):
+                anagrams.append(j)
+                seen.add(j)
+        output.append(anagrams)
+    print(output)
+main()
