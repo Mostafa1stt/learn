@@ -281,3 +281,144 @@ def main():
         output.append(anagrams)
     print(output)
 main()
+
+# Exercies 25
+def facto(number):
+    if number == 1:
+        yield 1
+    else:
+        for x in facto(number-1):
+            yield x
+            yield x * number
+
+x = facto(5)
+print(list(x))
+
+# Excercies 26
+import math
+def is_prime(number):
+    if number == 0 or number == 1 or number == 2:
+        return True
+    elif number%2 ==0:
+        return False
+    limit = int(math.sqrt(number))+1
+    for i in range (3,limit,2):
+        if number % i==0:
+            return False
+    return True
+print(is_prime(9))
+
+# Exercies 27
+def fibo(n):
+    if n == 1:
+        yield 0
+    elif n == 2:
+        yield 0
+        yield 1
+    else:
+        prev = list(fibo(n-1))
+        yield from prev
+        yield prev[-1] + prev[-2]
+
+x = fibo(100)
+print(next(x))
+
+# Exercies 28
+def find_GCD(bigger , smaller):
+    if bigger < smaller:
+        bigger, smaller = smaller,bigger
+    while True:
+        resualt = bigger % smaller
+        if resualt ==0:
+            return smaller
+        else:
+            bigger = smaller
+            smaller = resualt
+print(find_GCD(381,500))
+
+# Exercies 29
+def bin_ser(array,target):
+    if not(array):
+        return -1
+    x = int(len(array)/2)
+    if array[x] == target:
+        return x
+    elif array[x] < target:
+        return bin_ser(array[x:],target) + x
+    elif array[x] > target:
+        return bin_ser(array[:x],target)
+
+def main():
+    numbers = []
+    print("enter a char to stop entering numbers")
+    while True:
+        try:
+            number = float(input("enter the numbers: "))
+        except:
+            break
+        else:
+            numbers.append(number)
+            continue
+    while True:
+        try:
+            target = float(input("enter the target: "))
+        except:
+            continue
+        else:
+            break
+    numbers.sort()
+    print(f"{numbers}\n{target} is at {bin_ser(numbers,target)}")
+
+main()
+
+# Exercies 30,31
+#done
+
+# Exercies 32
+def reverse_string(s):
+    if s == "":
+        return s   # base case
+    return reverse_string(s[1:]) + s[0]
+
+print(reverse_string("zober"))
+
+# Exercies 33
+def main():
+    numbers = []
+    print("enter a char to stop entering numbers")
+    while True:
+        try:
+            number = float(input("enter the numbers: "))
+        except:
+            break
+        else:
+            numbers.append(number)
+            continue
+    print(numbers)
+    print(list(map(lambda x:x**2,numbers)))
+main()
+
+# Exercies 34
+def main():
+    numbers = []
+    print("enter a char to stop entering numbers")
+    while True:
+        try:
+            number = float(input("enter the numbers: "))
+        except:
+            break
+        else:
+            numbers.append(number)
+            continue
+    print(numbers)
+    print(list(filter(lambda x:x%2==0,numbers)))
+main()
+
+# Exercies 35
+def main():
+    things = ("john","charles","zober")
+    loj = ("lojp","zofasf","zvas")
+    x = zip(things, loj)
+    print(dict(x))
+main()
+
