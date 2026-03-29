@@ -1,0 +1,16 @@
+.add() like instert
+.update() like extend or |=
+.union() or |
+.intersection() or &
+.intersection_update() or &=
+.remove() will raise error
+.discard() will not raise error
+.pop()
+.clear()
+.symmetric_difference() or ^
+.symmetric_difference_update() ^=
+.isdisjoint()
+.issubset() or <= if you want to applay to the set or <
+.issuperset() or >= if you want to applay to the set or >
+.difference() or -
+.difference_update() -=

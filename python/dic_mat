@@ -1,0 +1,7 @@
+keys() return keys
+valuse() return values
+items() return keys and valuse
+update({"key":value})
+pop("key") 
+popitem() pop last key inserted
+clear

@@ -1,0 +1,41 @@
+.split(x,y) split depanding on x number of y times 
+.strip("xyz") remove x and y and z from the beginning and the end
+.replace(x , y) replace x with y 
+.upper()
+.lower()
+.swapcase()
+.capitalize()
+.casefold() ignore oumlout like ß
+.center(x,"y") str will be in the middel of a x length str with y as the beging and the end  
+.cout("x") will count how many x in the string
+.encode() replace unascii char with ther encoder version 
+.endswith()
+.startwith()
+.expandtabs(x) if there is \t in the str it will convert to space by x length
+.find("x",y,z) find x between index y and z-1 and return index of x
+.index() same as find but when not find return error not -1
+.isalnum()
+.isalpha()
+.isascii()
+.isidentifyer()
+.isdecimal()
+.isdigit()
+.islower()
+.isupper()
+.isnumeric()
+.isprintable() is char is like \n or anykind fo this will return false 
+.isspace()
+.istitle()
+str.join(x) will join x list elements with str in between
+.ljust(x,"y") add y x number of times at right of txt 
+.lstrip("xyz") same as strip but from the start only
+.maketrans(x,y,z) make with a dictionary  z as none and map x to y
+.translate(x) takes a dictionary(x) and use it on a str
+.partition(x) find the first instance of x and split it the str into 3 parts the before and x and the after
+.rfind() like .find but from the end
+.rindex() like .index but from the end
+.rpartiotn(x) same as partition but the after , the x and the before
+.rsplit(x,y) same as split but start from the end
+.rstrip() same strip but from the end only
+.title()
+.zfill(x) like ljust but add x number of zero only to the left of the txt
